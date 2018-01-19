@@ -385,10 +385,10 @@ def update_subchannel_msgs(debug=False, force=False):
             # make shift-enter and control-enter in insert mode behave same as in ipython notebook
             # shift-enter send the current line, control-enter send the line
             # but keeps it around for further editing.
-            vim.command("inoremap <buffer> <s-Enter> <esc>dd:python run_command('''<C-r>\"''')<CR>i")
+            vim.command("inoremap <buffer> <s-Enter> <esc>dd:Python run_command('''<C-r>\"''')<CR>i")
             # pkddA: paste, go up one line which is blank after run_command,
             # delete it, and then back to insert mode
-            vim.command("inoremap <buffer> <c-Enter> <esc>dd:python run_command('''<C-r>\"''')<CR>pkddA")
+            vim.command("inoremap <buffer> <c-Enter> <esc>dd:Python run_command('''<C-r>\"''')<CR>pkddA")
             # ctrl-C gets sent to the IPython process as a signal on POSIX
             vim.command("noremap <buffer>  :IPythonInterrupt<cr>")
 
@@ -450,8 +450,8 @@ def update_subchannel_msgs(debug=False, force=False):
         if s.find('\n') == -1:
             # somewhat ugly unicode workaround from
             # http://vim.1045645.n5.nabble.com/Limitations-of-vim-python-interface-with-respect-to-character-encodings-td1223881.html
-            if isinstance(s,unicode):
-                s=s.encode(vim_encoding)
+#            if isinstance(s,unicode):    # PY3
+#                s=s.encode(vim_encoding) # PY3
             b.append(s)
         else:
             try:
